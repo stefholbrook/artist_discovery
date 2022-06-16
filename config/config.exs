@@ -6,6 +6,7 @@
 
 # General application configuration
 import Config
+import_config "dev.secret.exs"
 
 config :artist_discovery,
   ecto_repos: [ArtistDiscovery.Repo]
@@ -25,6 +26,10 @@ config :artist_discovery, ArtistDiscoveryWeb.Endpoint,
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
 config :artist_discovery, ArtistDiscovery.Mailer, adapter: Swoosh.Adapters.Local
+
+config :spotify_ex,
+  scopes: ["user-read-private", "user-read-email", "playlist-read-collaborative"],
+  callback_url: "http://localhost:4000/authenticate"
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
