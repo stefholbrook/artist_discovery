@@ -27,7 +27,8 @@ config :artist_discovery, ArtistDiscoveryWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :artist_discovery, ArtistDiscovery.Mailer, adapter: Swoosh.Adapters.Local
 config :artist_discovery,
-  http_client: ArtistDiscovery.HttpClient
+  http_client: ArtistDiscovery.HttpClient,
+  spotify_authorization: ArtistDiscovery.Spotify.Authorization.Implementation
 
 config :spotify_ex,
   scopes: "user-read-private user-read-email playlist-read-collaborative",

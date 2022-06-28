@@ -1,4 +1,4 @@
-defmodule ArtistDiscovery.Authorization.Implementation do
+defmodule ArtistDiscovery.Spotify.Authorization.Implementation do
   @moduledoc "This example uses an [`Agent`](https://hexdocs.pm/elixir/Agent.html) to persist the tokens"
   use HTTPoison.Base
 
@@ -10,10 +10,8 @@ defmodule ArtistDiscovery.Authorization.Implementation do
 
   defp auth_token, do: Base.encode64("#{client_id()}:#{client_secret()}")
 
-  # TODO: Parse response and save token to Agent
-  # def post(url, body, headers \\ [], opts \\ []) do
-  def fetch do
-    HTTPoison.post(
+  def fetch_access_token do
+    @http_client.post(
       "https://accounts.spotify.com/api/token",
       {:form, [
         {"grant_type", "client_credentials"},
